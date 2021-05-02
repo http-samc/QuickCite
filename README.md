@@ -1,28 +1,67 @@
-# citer
- An API Wrapper for automatic MLA citations
+# QuickCite
+ An API Wrapper for automatic MLA, CHI, & APA citations
 
 ## How To Use:
 
-### As a Code Utility
-*Requires that the ``Requests`` and ``Json`` packages are installed*
-1. Import the ``cite`` class from ``citer``. \
-*Example:* ``from citer import cite``
-2. Create a ``cite`` object with the URL as a parameter. \
-*Example:* ``citation = cite("https://www.npr.org/2019/04/10/709490855/github-has-become-a-haven-for-chinas-censored-internet-users")``
-3. Call the ``mla`` method on ``citation`` \
-*Example:* ``print(citation.mla())``
+*Installation with PIP*
+```
+pip install QuickCite
+```
 
-*Output Value:* \
-Feng, Emily. "GitHub Has Become A Haven For China’s Censored Internet Users" NPR, 2019-04-10, https://www.npr.org/2019/04/10/709490855/github-has-become-a-haven-for-chinas-censored-internet-users. Accessed 15/2/2021.
+*Basic Usage*
 
-### As a GUI tool
+```python
+# Import Module
+from QuickCite import Citation 
 
-1. Download the latest release of citer from this repository.
-2. Start the ``citer.exe`` program.
-3. Enter the webpage URL in the entry box.
-4. Click ``Start``.
-5. A popup with your MLA citation will open. This is a gui wrapper for the ``cite`` class.
-6. Click out of your popup and enter another URL, or end the program.
+# Create Citation Object with URL as paramater
+c = Citation(URL="https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/")
 
-## TODO
-1. Improve collection (some sites like Reuters do not work).
+# Get Citations
+MLA = c.MLA()
+APA = c.APA()
+CHI = c.CHI()
+
+print("MLA:\n"+MLA)
+print("\nAPA:\n"+APA)
+print("\nCHI:\n"+CHI)
+```
+
+Output:
+
+```
+MLA:
+Wright, Thomas. "Trans-Atlantic Scorecard — April 2021" Brookings, 2021-04-27, https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/. Accessed 2/5/2021.
+
+APA:
+Wright, T. (2021, 04-27) Trans-Atlantic Scorecard — April 2021. Brookings. https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/
+
+CHI:
+Thomas Wright, "Trans-Atlantic Scorecard — April 2021," Brookings, last modified 2021-04-27, https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/.
+```
+
+*Advanced Usage (Cont'd from Basic)*
+
+```python
+# Adding the optional type paramater to define what citation
+# format is outputted when the __str__() method is called.
+
+c_advanced = Citation(URL="https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/", type="APA")
+
+# The type parameter is a string, and can either be:
+    # "MLA" (default)
+    # "APA"
+    # "CHI"
+
+# Printing Citation Object
+print(c_advanced)
+```
+
+Output:
+```
+Wright, T. (2021, 04-27) Trans-Atlantic Scorecard — April 2021. Brookings. https://www.brookings.edu/research/trans-atlantic-scorecard-april-2021/
+```
+
+## Known issues
+- Errors with date formatting
+- Errors getting multiple authors
