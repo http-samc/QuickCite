@@ -1,4 +1,4 @@
-# QuickCite
+# QuickCite ![3k+ on PyPi](https://www.smrth.dev/api/pypi-downloads/badge/quickcite)
  An API Wrapper for automatic MLA, CHI, & APA citations
 
 ## How To Use:
